@@ -1,6 +1,8 @@
 import { concatTailwindClasses } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ThemeProvider } from '../components/ui/theme-provider'
+import { ThemeToggle } from '../components/ui/theme-toggle'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,14 +22,16 @@ export default function RootLayout({
 			<body
 				className={concatTailwindClasses(
 					inter.className,
-					'bg-background',
 					'text-foreground',
 					'flex',
 					'justify-center',
 					'items-center'
 				)}
 			>
-				{children}
+				<ThemeProvider>
+					<ThemeToggle />
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	)

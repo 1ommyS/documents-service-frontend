@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -41,6 +40,7 @@ const AuthPage = () => {
 		},
 	})
 
+	console.log(form)
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		console.log(values)
 	}
