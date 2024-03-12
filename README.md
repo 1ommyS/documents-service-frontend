@@ -38,3 +38,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
    1.4 Подача заявлений
    1.5 Архив заявлений
 2. Подключать бекенд
+
+3. Сделать связь с переводчиком (переводить название города с русского на английский). Yandex Translate Api
