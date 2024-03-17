@@ -13,11 +13,14 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import Link from "next/link";
+import {routes} from "@/utils/routes";
 
 const AuthPage = () => {
 	const formSchema = z.object({
-		username: z
+		email: z
 			.string()
+			.email()
 			.min(3, {
 				message: 'Длина логина не может быть меньше 3 символов',
 			})
@@ -36,7 +39,7 @@ const AuthPage = () => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			username: '',
+			email: '',
 		},
 	})
 
@@ -50,7 +53,7 @@ const AuthPage = () => {
 			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
 				<FormField
 					control={form.control}
-					name='username'
+					name='email'
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Логин</FormLabel>
@@ -74,7 +77,8 @@ const AuthPage = () => {
 						</FormItem>
 					)}
 				/>
-				<Button type='submit'>Submit</Button>
+				<Button type='submit'>Авторизоваться</Button>
+				<span>Еще нет аккаунта? </span> <Link className={'underline underline-offset-1 hover:text-2xl'} href={routes.registration}>Зарегистрируйтесь</Link>
 			</form>
 		</Form>
 	)

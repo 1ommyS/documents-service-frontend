@@ -24,15 +24,23 @@ export const fetchWeatherByCity = async (city: string): Promise<Weather> => {
 			return data
 		}) */
 
-	const dataFromServer = await axios
-		.get(apiUrl)
-		.then(response => {
-			console.log(response)
-			return response.data
+	async function getDataFromServer() {
+		return await axios
+			.get(apiUrl)
+			.then(response => {
+				return response.data
+			})
+			.catch(error => {
+				console.log(error?.response?.status)
+			});
+	}
+
+	const dataFromServer = await Promise.race([
+		getDataFromServer(),
+		new Promise((_, reject) => {
+			return setTimeout(() => reject('Время истекло'), 100)
 		})
-		.catch(error => {
-			console.log(error?.response?.status)
-		})
+	])
 
 	console.log(dataFromServer)
 

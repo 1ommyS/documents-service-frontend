@@ -23,9 +23,8 @@ export default function RootLayout({
 				className={concatTailwindClasses(
 					inter.className,
 					'text-foreground',
-					'flex',
-					'justify-center',
-					'items-center'
+					'ml-[30rem]',
+					'mr-[30rem]'
 				)}
 			>
 				<ThemeProvider>
