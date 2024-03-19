@@ -32,14 +32,14 @@ export const fetchWeatherByCity = async (city: string): Promise<Weather> => {
 			})
 			.catch(error => {
 				console.log(error?.response?.status)
-			});
+			})
 	}
 
 	const dataFromServer = await Promise.race([
 		getDataFromServer(),
 		new Promise((_, reject) => {
 			return setTimeout(() => reject('Время истекло'), 100)
-		})
+		}),
 	])
 
 	console.log(dataFromServer)

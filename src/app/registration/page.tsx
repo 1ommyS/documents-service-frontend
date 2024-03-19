@@ -8,9 +8,17 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {routes} from "@/utils/routes";
-import {registrateUser} from "@/api/AuthAndRegistration";
+import {registrateUser, UserQuery} from "@/api/AuthAndRegistration";
+import {useContext} from "react";
+import {AuthContext} from "@/lib/AuthContext";
+import {useRouter} from "next/navigation";
 
 export default function Registration() {
+    const {authedUserInfo, setAuthedUserInfo, setLoggedStatus, loggedStatus} = useContext(AuthContext);
+    const router = useRouter()
+
+    if (loggedStatus) router.push("/");
+
     const formSchema = z.object({
         email: z
             .string()
@@ -46,12 +54,13 @@ export default function Registration() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        let userId = await registrateUser(values)
+        const authedUserData = await registrateUser(values)
             .catch(error => {
                 alert(error.response.data.message)
-            });
+            }) as UserQuery;
 
-        console.log(userId)
+        setAuthedUserInfo(authedUserData )
+        setLoggedStatus(true);
     }
 
     return (
