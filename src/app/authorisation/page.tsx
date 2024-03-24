@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form'
 import {z} from 'zod'
 import Link from "next/link";
 import {routes} from "@/utils/routes";
-import {authUser, UserQuery} from "@/api/AuthAndRegistration";
+import {authUser, UserQuery} from "@/api/user/AuthAndRegistration";
 import {useRouter} from "next/navigation";
 import {useContext} from "react";
 import {AuthContext} from "@/lib/AuthContext";

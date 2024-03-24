@@ -1,7 +1,7 @@
 'use client'
 
 import React, {createContext, useState, ReactNode, Dispatch, SetStateAction} from 'react';
-import {UserQuery} from "@/api/AuthAndRegistration";
+import {UserQuery} from "@/api/user/AuthAndRegistration";
 
 
 interface AuthContextType {

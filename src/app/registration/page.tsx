@@ -8,7 +8,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
 import {routes} from "@/utils/routes";
-import {registrateUser, UserQuery} from "@/api/AuthAndRegistration";
+import {registrateUser, UserQuery} from "@/api/user/AuthAndRegistration";
 import {useContext} from "react";
 import {AuthContext} from "@/lib/AuthContext";
 import {useRouter} from "next/navigation";

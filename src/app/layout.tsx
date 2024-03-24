@@ -1,10 +1,13 @@
 import {concatTailwindClasses} from '@/lib/utils'
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
-import {ThemeProvider} from '../components/ui/theme-provider'
-import {ThemeToggle} from '../components/ui/theme-toggle'
+import {ThemeProvider} from '@/components/ui/theme-provider'
+import {ThemeToggle} from '@/components/ui/theme-toggle'
 import './globals.css'
 import {AuthProvider} from "@/lib/AuthContext";
+import ListItem from "@/components/ui/ListItem";
+import React, {useCallback} from "react";
+import Header from "@/components/common/Header";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -19,6 +22,45 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
 
+    const headerCallbackfn = useCallback(
+        //@ts-ignore
+        (component) => (
+        <ListItem
+            key={component.title}
+            title={component.title}
+            href={component.href}
+        >
+            {component.description}
+        </ListItem>
+    ), []);
+
+    const breadCumbs: { title: string; href: string; description: string }[] = [
+        {
+            title: "Главная",
+            href: "/",
+            description:
+                "Популярные документы",
+        },
+        {
+            title: "Документы",
+            href: "/docs",
+            description:
+                "Все возможные документы и взаимодействие с ними",
+        },
+        {
+            title: "Категории",
+            href: "/categories",
+            description:
+                "Категории документов",
+        },
+        {
+            title: "Заявки",
+            href: "/applications",
+            description: "Подать заявку",
+        },
+
+    ]
+
     return (
         <html lang='en'>
         <body
@@ -32,6 +74,10 @@ export default function RootLayout({
         <AuthProvider>
             <ThemeProvider>
                 <ThemeToggle/>
+                <Header
+                    //@ts-ignore
+                    components={breadCumbs}
+                    callbackfn={headerCallbackfn}/>
                 {children}
             </ThemeProvider>
         </AuthProvider>
