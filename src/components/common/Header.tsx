@@ -42,7 +42,11 @@ function Header(props: {
                         <Link href={routes.authorisation}>Авторизация/Регистрация</Link>
                     </NavigationMenuTrigger>
                 </NavigationMenuItem>
-
+                <NavigationMenuItem>
+                    <NavigationMenuTrigger>
+                        <Link href={routes.newDocument}>Создание документа</Link>
+                    </NavigationMenuTrigger>
+                </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu></React.Fragment>;
 }

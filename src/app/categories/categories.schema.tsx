@@ -31,7 +31,7 @@ export const categoriesSchema: ColumnDef<Category>[] = [
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Название документа
+                    Название категории
                     <ArrowUpDown className="ml-2 h-4 w-4"/>
                 </Button>
             )
@@ -45,7 +45,7 @@ export const categoriesSchema: ColumnDef<Category>[] = [
 
             return <div className="text-right font-medium">{
                 <Button >
-                <Link href={`/document/${row.getValue("id")}`}>Перейти</Link>
+                <Link href={`/categories/${row.getValue("id")}`}>Перейти</Link>
                 </Button>
             }</div>
         },
