@@ -8,6 +8,7 @@ import {AuthProvider} from "@/lib/AuthContext";
 import ListItem from "@/components/ui/ListItem";
 import React, {useCallback} from "react";
 import Header from "@/components/common/Header";
+import {Toaster} from "sonner";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -43,7 +44,7 @@ export default function RootLayout({
         },
         {
             title: "Документы",
-            href: "/docs",
+            href: "/documents",
             description:
                 "Все возможные документы и взаимодействие с ними",
         },
@@ -55,7 +56,7 @@ export default function RootLayout({
         },
         {
             title: "Заявки",
-            href: "/applications",
+            href: "/requests/new",
             description: "Подать заявку",
         },
 
@@ -79,6 +80,7 @@ export default function RootLayout({
                     components={breadCumbs}
                     callbackfn={headerCallbackfn}/>
                 {children}
+                <Toaster />
             </ThemeProvider>
         </AuthProvider>
         </body>

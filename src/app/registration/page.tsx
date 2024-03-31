@@ -54,12 +54,14 @@ export default function Registration() {
     })
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        const authedUserData = await registrateUser(values)
+        await registrateUser(values)
+            .then(response => {
+                setAuthedUserInfo(response)
+            })
             .catch(error => {
                 alert(error.response.data.message)
-            }) as UserQuery;
+            });
 
-        setAuthedUserInfo(authedUserData )
         setLoggedStatus(true);
     }
 
